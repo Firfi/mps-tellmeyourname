@@ -1,0 +1,24 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+    </plugin-info>
+    <component key="tellmeyourname-service"
+               name="Tell Me Your Name Service"
+               description="service that finds some name parts in given fullname"
+               class="ru.megaplan.jira.plugins.tellmeyourname.service.impl.TellMeYourNameServiceImpl">
+         <interface>ru.megaplan.jira.plugins.tellmeyourname.service.TellMeYourNameService</interface>
+    </component>
+    <component-import key="eventPublisher" interface="com.atlassian.event.api.EventPublisher"/>
+    <component key="eventListener" class="ru.megaplan.jira.plugins.tellmeyourname.listener.TellMeYourNameListener">
+        <description>Tell Me Your Name Listener for created new users.</description>
+    </component>
+    <resource type="i18n" name="peoplenames" location="peoplenames" />
+    <webwork1 key="tellmeyourname-actions" name="tellmeyourname actions">
+        <actions>
+            <action name="ru.megaplan.jira.plugins.tellmeyourname.action.RefreshAllUserFirstNamesAction" alias="RefreshAllUserFirstNamesAction">
+            </action>
+        </actions>
+    </webwork1>
+</atlassian-plugin>
